@@ -4,7 +4,7 @@ services:
   apache:
     image: php:7.4-apache
     container_name: my-apache-app
-    build: .
+    #build: .
     ports:
     - '8080:80'
     volumes:
