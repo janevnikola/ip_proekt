@@ -5,7 +5,15 @@ services:
     image: php:7.4-apache
     container_name: my-apache-app
     #build: .
-    ports:
-    - '8080:80'
+ #   ports:
+ #  - '8080:80'
     volumes:
     - ./website:/usr/local/apache2/htdocs
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./conf.d:/etc/nginx/conf.d
+    depends_on:
+      - apache
+    ports:
+      - 3000:3000
