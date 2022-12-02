@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  apache:
+    image: php:7.4-apache
+    container_name: my-apache-app
+    build: .
+    ports:
+    - '8080:80'
+    volumes:
+    - ./website:/usr/local/apache2/htdocs
