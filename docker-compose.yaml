@@ -1,14 +1,11 @@
-version: '3.9'
-
+---
+version: "3.9"
 services:
   apache:
-    image: php:7.4-apache
-    container_name: my-apache-app
-    #build: .
+    build: .
+#    image: docker.io/bitnami/apache:2.4
  #   ports:
- #  - '8080:80'
-    volumes:
-    - ./website:/usr/local/apache2/htdocs
+  #    - 80:8080
   nginx:
     image: nginx:latest
     volumes:
