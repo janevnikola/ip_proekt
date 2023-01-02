@@ -1,5 +1,5 @@
 FROM php:7.4-apache
-#COPY ./php /var/www/html/
+ADD php /var/www/html/
 
 RUN echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
 RUN service apache2 restart
@@ -8,8 +8,10 @@ RUN apt upgrade -y
 RUN apt install nano -y
 RUN apt install git -y
 #RUN git clone https://github.com/moodle/moodle.git
-#RUN mkdir /var/www/html/moodle
-#RUN chmod 777 /var/www/html/moodle
+RUN wget https://download.moodle.org/download.php/direct/stable401/moodle-latest-401.tgz
+RUN tar -zxvf moodle-latest-401.tgz
+RUN mkdir /var/www/html/moodle
+RUN chmod 777 /var/www/html/moodle
 
 RUN echo "<VirtualHost *:80>" > /etc/apache2/sites-available/000-default.conf
 RUN echo "ServerAdmin admin@example.com" >> /etc/apache2/sites-available/000-default.conf
