@@ -1,5 +1,5 @@
 FROM php:7.4-apache
-ADD php /var/www/html/
+ADD php /var/www/html
 
 RUN echo "ServerName 127.0.0.1" >> /etc/apache2/apache2.conf
 RUN service apache2 restart
@@ -8,8 +8,6 @@ RUN apt upgrade -y
 RUN apt install nano -y
 RUN apt install git -y
 #RUN git clone https://github.com/moodle/moodle.git
-RUN wget https://download.moodle.org/download.php/direct/stable401/moodle-latest-401.tgz
-RUN tar -zxvf moodle-latest-401.tgz
 RUN mkdir /var/www/html/moodle
 RUN chmod 777 /var/www/html/moodle
 
@@ -33,8 +31,14 @@ RUN echo "</VirtualHost>" >> /etc/apache2/sites-available/000-default.conf
 RUN a2enmod rewrite
 RUN chmod 777 /var/www
 RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
+RUN apt-get install -y \
+        libzip-dev \
+        zip \
+  && docker-php-ext-install zip
+#RUN docker-php-ext-install gd
+#RUN docker-php-ext-install soap
+#RUN docker-php-ext-install intl
 
-
-
-
+RUN  --mount=type=bind,from=mlocati/php-extension-installer:1.5,source=/usr/bin/install-php-extensions,target=/usr/local/bin/install-php-extensions \
+      install-php-extensions gd soap intl
 
