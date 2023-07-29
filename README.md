@@ -1,14 +1,16 @@
-# ip_proekt
-Proekt za predmetot infrastrukturno programiranje
+Infrastructure programming project
+This project was made for a subject on my faculty - Infrastructure programming at Faculty of computer science and engeneering
 
-Download a moodle:
+1. Download a moodle:
 
--Download moodle in a container
+1.1 To download moodle in a container
+Commands:
 git clone --depth 1 git://git.moodle.org/moodle.git
 
--Download with apt
-wget https://download.moodle.org/download.php/direct/stable401/moodle-latest-401.tgz
-tar -zxvf moodle-latest-401.tgz
+1.2 To download with apt
+Commands:
+Download the file: wget https://download.moodle.org/download.php/direct/stable401/moodle-latest-401.tgz
+Unpack: tar -zxvf moodle-latest-401.tgz
 
 Structure of the project:
 
